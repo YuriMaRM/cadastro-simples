@@ -1,18 +1,21 @@
 var accounts = [];
-function usernameIsValid() {
+function usernameIsValid() { // valida o tamanho do nome 3 < nome > 25
     const name = document.forms["cadastro"]["nome"];
-    if (name.value.length < 3 || name.value.length > 25) {
-        name.className = "erro";
-        document.getElementById("alertNome").innerHTML = "Nome deve ter de 3 a 25 caracteres";
+    if (name.value.length < 3 || name.value.length > 25) { 
+        name.className = "erro"; // Altera a classe para Erro
+        document.getElementById("alertNome").innerHTML = "Nome deve ter de 3 a 25 caracteres"; // Adiciona o texto de erro no span
     } else {
         name.className = "certo";
-        document.getElementById("alertNome").innerHTML = "";
+        document.getElementById("alertNome").innerHTML = ""; // caso tenha texto de erro apaga
     }
-    buttonIsDisabled();
+    buttonIsDisabled(); // Verifica se o botão ainda esta desativado
 }
-function emailIsValid() {
+function emailIsValid() { // Valida o email com um regex
     const email = document.forms["cadastro"]["email"];
     if (email.value.match(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)) {
+        /*
+            usa a função match para comparar o email com o regex 
+         */
         email.className = "certo";
         document.getElementById("alertEmail").innerHTML = "";
     } else {
@@ -21,7 +24,7 @@ function emailIsValid() {
     }
     buttonIsDisabled();
 }
-function passwordIsValid() {
+function passwordIsValid() { // Valida a senha >= 8
     const password = document.forms["cadastro"]["senha"];
 
     if (password.value.length < 8) {
@@ -31,27 +34,27 @@ function passwordIsValid() {
         password.className = "certo";
         document.getElementById("alertSenha").innerHTML = "";
     }
-    confirmPasswordIsValid();
+    confirmPasswordIsValid();// Valida a confirmação de senha
 }
-function confirmPasswordIsValid() {
+function confirmPasswordIsValid() {// Verifica se a senha é igual(===) a confimarção de senha 
     const password = document.forms["cadastro"]["senha"].value;
     const cPassword = document.forms["cadastro"]["Csenha"];
 
     if (cPassword.value !== password) {
         cPassword.className = "erro";
         document.getElementById("alertCsenha").innerHTML = "O valor deve ser igual a senha";
-    } else if (cPassword.value !== "") {
+    } else if (cPassword.value !== "") {// para não ficar certo vazio, me incomodava
         cPassword.className = "certo";
         document.getElementById("alertCsenha").innerHTML = "";
     }
     buttonIsDisabled();
 }
 
-function validateForm() {
+function validateForm() {//Valida o formulario e salva os dados caso nos conformes
     document.getElementById("submit").disabled = true;
     setTimeout(() => {
         document.getElementById("submit").disabled = false;
-    }, 1000);
+    }, 1000);// desabilita o botão de cadastro por um segundo
     const name = document.forms["cadastro"]["nome"];
     const email = document.forms["cadastro"]["email"];
 
@@ -70,16 +73,16 @@ function validateForm() {
             email.className = "erro";
         }
     });
-    if (isValid) {
+    /* Passam pelo array salvo verificando caso tenham algum com mesmo nome ou email*/
+    if (isValid) // em caso de dados novos isValid continua true
         accounts[accounts.length] = {
             name: name.value,
             email: email.value,
             password: document.forms["cadastro"]["senha"].value,
         };
-    }
 }
 
-function buttonIsDisabled() {
+function buttonIsDisabled() {/* Verifica se o estado que o botão deve estar e modifica caso errado */
     const password = document.forms["cadastro"]["senha"];
     const cPassword = document.forms["cadastro"]["Csenha"];
     const name = document.forms["cadastro"]["nome"];
@@ -89,16 +92,16 @@ function buttonIsDisabled() {
         cPassword.className === "certo" &&
         name.className === "certo" &&
         email.className === "certo"
-    ) {
+    ) {// Caso todas estejam com a classe "certo"(verde) o botão de cadastro é desabilitado
         document.getElementById("submit").disabled = false;
     } else document.getElementById("submit").disabled = true;
 }
 
-window.onclick = function (event) {
+window.onclick = function (event) { //fecha o modal se clicando fora
     if (event.target == modal)
         modal.style.display = "none";
 };
-function login() {
+function login() { // faz o modal aparecer
     const modal = document.getElementById("modal");
     modal.style.display = "flex";
 }
