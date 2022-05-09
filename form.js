@@ -93,3 +93,12 @@ function buttonIsDisabled() {
         document.getElementById("submit").disabled = false;
     } else document.getElementById("submit").disabled = true;
 }
+
+window.onclick = function (event) {
+    if (event.target == modal)
+        modal.style.display = "none";
+};
+function login() {
+    const modal = document.getElementById("modal");
+    modal.style.display = "flex";
+}
