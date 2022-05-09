@@ -13,29 +13,29 @@
 
     <title>Document</title>
 </head>
+
 <body>
     <div id="conteiner">
         <h1>Cadastrar</h1>
         <form name="cadastro">
             <label for="nome">Username</label>
-            <input id="nome" onfocusout="usernameIsValid()" name="nome" type="text" required>
+            <input onfocusout="usernameIsValid()" name="nome" type="text" required>
             <span id="alertNome"></span>
 
-            <label  for="email">Email</label>
-            <input id="email" onfocusout="emailIsValid()" name="email" type="email" required>
+            <label for="email">Email</label>
+            <input onfocusout="emailIsValid()" name="email" type="email" required>
             <span id="alertEmail"></span>
 
             <label for="senha">Senha</label>
-            <input id="senha" onfocusout="passwordIsValid()" name="senha" type="password" required>
+            <input onfocusout="passwordIsValid()" name="senha" type="password" required>
             <span id="alertSenha"></span>
 
             <label for="Csenha">Confirmação de senha</label>
-            <input id="Csenha" onfocusout="passwordIsValid()" name="Csenha" type="password" required>
-            <span id="alert"></span>
-
-            <button id="submit" onclick="validateForm()" name="submit" disabled>Cadastrar</button>
+            <input onfocusout="confirmPasswordIsValid()" name="Csenha" type="password" required>
+            <span id="alertCsenha"></span>
         </form>
+        <button id="submit" onclick="validateForm()" disabled>Cadastrar</button>
+
     </div>
 </body>
-
 </html>
