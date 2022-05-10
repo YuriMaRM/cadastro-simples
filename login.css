@@ -20,6 +20,7 @@ h1{
     color: #570D12;
 }
 button{
+    cursor: pointer;
     border: none;
     width: 240px;
     height: 52px;
@@ -64,12 +65,10 @@ form{
     padding-bottom: 5px;
 }
 .erro{
-    border-radius: 7px !important;
     border: 2px solid #DC2727 !important;
 }
 .certo{
     border: 2px solid #1C9F11 !important; 
-    border-radius: 7px !important;
 }
 span{
     position:relative;
