@@ -1,6 +1,7 @@
-var accounts = [];
+const ACCOUNTS = [];
+
 function usernameIsValid() { // valida o tamanho do nome 3 < nome > 25
-    const name = document.forms["cadastro"]["nome"];
+    const name = document.forms["cadastro"]["nome"]; 
     if (name.value.length < 3 || name.value.length > 25) { 
         name.className = "erro"; // Altera a classe para Erro
         document.getElementById("alertNome").innerHTML = "Nome deve ter de 3 a 25 caracteres"; // Adiciona o texto de erro no span
@@ -59,14 +60,13 @@ function validateForm() {//Valida o formulario e salva os dados caso nos conform
     const email = document.forms["cadastro"]["email"];
 
     let isValid = true;
-    accounts.forEach(account => {
+    // Passa por todo o array ACCOUNTS e verifica se ja existe um nome ou email
+    ACCOUNTS.forEach(account => {
         if (account.name === name.value) {
             isValid = false;
             document.getElementById("alertNome").innerHTML = "Nome ja registrado";
             name.className = "erro";
         }
-    });
-    accounts.forEach(account => {
         if (account.email === email.value) {
             isValid = false;
             document.getElementById("alertEmail").innerHTML = "Email ja registrado";
@@ -75,7 +75,7 @@ function validateForm() {//Valida o formulario e salva os dados caso nos conform
     });
     /* Passam pelo array salvo verificando caso tenham algum com mesmo nome ou email*/
     if (isValid) // em caso de dados novos isValid continua true
-        accounts[accounts.length] = {
+        ACCOUNTS[ACCOUNTS.length] = {
             name: name.value,
             email: email.value,
             password: document.forms["cadastro"]["senha"].value,
@@ -95,13 +95,4 @@ function buttonIsDisabled() {/* Verifica se o estado que o botão deve estar e m
     ) {// Caso todas estejam com a classe "certo"(verde) o botão de cadastro é desabilitado
         document.getElementById("submit").disabled = false;
     } else document.getElementById("submit").disabled = true;
-}
-
-window.onclick = function (event) { //fecha o modal se clicando fora
-    if (event.target == modal)
-        modal.style.display = "none";
-};
-function login() { // faz o modal aparecer
-    const modal = document.getElementById("modal");
-    modal.style.display = "flex";
 }
