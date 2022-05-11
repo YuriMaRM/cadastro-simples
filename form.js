@@ -74,12 +74,14 @@ function validateForm() {//Valida o formulario e salva os dados caso nos conform
         }
     });
     /* Passam pelo array salvo verificando caso tenham algum com mesmo nome ou email*/
-    if (isValid) // em caso de dados novos isValid continua true
+    if (isValid){ // em caso de dados novos isValid continua true
         ACCOUNTS[ACCOUNTS.length] = {
             name: name.value,
             email: email.value,
             password: document.forms["cadastro"]["senha"].value,
         };
+        document.forms["cadastro"].reset();
+    }
 }
 
 function buttonIsDisabled() {/* Verifica se o estado que o botão deve estar e modifica caso errado */
