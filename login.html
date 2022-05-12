@@ -20,22 +20,22 @@
         <form name="cadastro">
             <label for="nome">Username</label>
             <input onfocusout="usernameIsValid()" name="nome" type="text" required>
-            <span id="alertNome"></span>
+            <span id="nomeErro"></span>
 
             <label for="email">Email</label>
             <input onfocusout="emailIsValid()" name="email" type="email" required>
-            <span id="alertEmail"></span>
+            <span id="emailErro"></span>
 
             <label for="senha">Senha</label>
             <input onfocusout="passwordIsValid()" name="senha" type="password" required>
-            <span id="alertSenha"></span>
+            <span id="senhaErro"></span>
 
             <label for="Csenha">Confirmação de senha</label>
             <input onfocusout="confirmPasswordIsValid()" name="Csenha" type="password" required>
-            <span id="alertCsenha"></span>
-            
-            <button id="submit" onclick="validateForm()" disabled>Cadastrar</button>
+            <span id="CsenhaErro"></span>
         </form>
+        <button id="submit" onclick="formValidate()" disabled>Cadastrar</button>
+
     </div>
 </body>
 </html>
