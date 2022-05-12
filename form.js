@@ -36,9 +36,7 @@ function disableButton() {/* Verifica se o estado que o botão deve estar e modi
 
 function responseHandler(isValid, elementName, registred = false) {
     let text = "";
-    document.forms["cadastro"][elementName].className = isValid
-        ? "certo"
-        : "erro";
+    document.forms["cadastro"][elementName].className = isValid? "certo" : "erro";
     if (!isValid)
         switch (elementName) {
             case "nome":
@@ -62,14 +60,14 @@ function responseHandler(isValid, elementName, registred = false) {
 }
 
 function isRegistred() {
-    let isValid = false;
+    let isValid = true;
     ACCOUNTS.forEach(account => {
         if (account.name === document.forms["cadastro"]["nome"].value) {
-            responseHandler(true, "nome", true);
+            responseHandler(false, "nome", true);
             isValid = false;
         }
         if (account.email === document.forms["cadastro"]["email"].value) {
-            responseHandler(true, "email", true);
+            responseHandler(false, "email", true);
             isValid = false;
         }
     });
@@ -77,11 +75,6 @@ function isRegistred() {
 }
 
 function formValidate() {
-    document.getElementById("submit").disabled = true;
-    setTimeout(() => {
-        document.getElementById("submit").disabled = false;
-    }, 1000); // desabilita o botão de cadastro por um segundo
-
     if (isRegistred()) {
         ACCOUNTS[ACCOUNTS.length] = {
             name: document.forms["cadastro"]["nome"].value,
@@ -90,6 +83,11 @@ function formValidate() {
         };
         document.forms["cadastro"].reset();
         for (const input in document.forms["cadastro"])
-            document.forms["cadastro"][input].className = "";
+            if(document.forms["cadastro"][input])
+                document.forms["cadastro"][input].className = "";
     }
+}
+function submitForm(){
+    document.getElementById("submit").disabled = true;
+    setTimeout(()=>formValidate(), 1000);  
 }
