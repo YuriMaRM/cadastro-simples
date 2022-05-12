@@ -90,6 +90,6 @@ function formValidate() {
 function submitForm(){
     document.getElementById("submit").disabled = true;
     formValidate();
-    setTimeout(return, 1000);
+    await setTimeout(()=>{}, 1000);
     
 }
